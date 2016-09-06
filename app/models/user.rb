@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :set_username
   has_many :playing_sessions
   has_many :rpg_characters
   # Include default devise modules. Others available are:
@@ -25,5 +26,9 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  def set_username
+    self.username = "#{first_name}_#{last_name}"
   end
 end

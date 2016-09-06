@@ -1,0 +1,33 @@
+ <div class="info-creator">
+   <%= image_tag @game.creator.facebook_picture_url %>
+   <p>
+     <%= @game.creator.first_name %>
+   </p>
+ </div>
+
+  <div class="info-gm">
+   <%= image_tag @game.gm.facebook_picture_url %>
+   <p>
+     <%= @game.gm.first_name %>
+   </p>
+ </div>
+
+ <div class="game-form">
+  <%= simple_form_for @game, url: account_game_path, method: :put do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <h3>
+    Select a GM
+  </h3>
+  <div class="player_names hidden">
+    <% @players.each do |player| %>
+      <li>
+        <%= player.first_name %>
+      </li>
+    <% end %>
+  </div>
+  <%= select_tag :gm_id, options_for_select(@players.map { |player| [player.username, player.id, "data-img-src" => player.facebook_picture_url] }, @player_ids), multiple: false, class: "player-picker" %>
+   <select multiple='multiple' class='image-picker show-labels show-html hide' name='imageList'></select>
+  <%= f.submit class: "btn btn-primary" %>
+  <% end -%>
+</div>

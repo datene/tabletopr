@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906192143) do
+ActiveRecord::Schema.define(version: 20160906220704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20160906192143) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "gm_id"
+    t.integer  "creator_id"
+    t.index ["creator_id"], name: "index_games_on_creator_id", using: :btree
     t.index ["gm_id"], name: "index_games_on_gm_id", using: :btree
   end
 
@@ -240,6 +242,7 @@ ActiveRecord::Schema.define(version: 20160906192143) do
     t.string   "token"
     t.datetime "token_expiry"
     t.string   "photo"
+    t.string   "username"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -253,6 +256,7 @@ ActiveRecord::Schema.define(version: 20160906192143) do
   add_foreign_key "encounters", "chapters"
   add_foreign_key "equipment", "rpg_characters"
   add_foreign_key "feature_traits", "rpg_characters"
+  add_foreign_key "games", "users", column: "creator_id"
   add_foreign_key "games", "users", column: "gm_id"
   add_foreign_key "initiatives", "action_events"
   add_foreign_key "initiatives", "dice_rolls"

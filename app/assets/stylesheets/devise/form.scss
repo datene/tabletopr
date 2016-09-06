@@ -1,0 +1,23 @@
+.devise-forms {
+  background: $broken-white;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 2pt;
+  box-shadow: 2px 2px 2px rgba(1,1,1,0.3);
+  text-align: center;
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.devise-shared {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px auto;
+}

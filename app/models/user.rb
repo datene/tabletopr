@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :playing_sessions
+  has_many :rpg_characters
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

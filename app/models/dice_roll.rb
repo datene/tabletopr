@@ -1,0 +1,2 @@
+class DiceRoll < ApplicationRecord
+end

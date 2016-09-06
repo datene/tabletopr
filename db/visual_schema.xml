@@ -247,12 +247,19 @@
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="games" row="id" />
 </row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
 <table x="667" y="681" name="lores">
 <row name="id" null="1" autoincrement="1">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="content" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <row name="encounter_id" null="1" autoincrement="0">
@@ -301,9 +308,6 @@
 <default>NULL</default></row>
 <row name="atk_bonus" null="1" autoincrement="0">
 <datatype>INT</datatype>
-<default>NULL</default></row>
-<row name="damage_type" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <row name="damage_modifier" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
@@ -356,16 +360,16 @@
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="rpg_character_id" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="rpg_characters" row="id" />
-</row>
 <row name="name" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
+<row name="rpg_character_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="rpg_characters" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -451,15 +455,10 @@
 <part>id</part>
 </key>
 </table>
-<table x="198" y="559" name="initiatives">
+<table x="136" y="553" name="initiatives">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="player_id" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="monsters" row="id" />
-<relation table="rpg_characters" row="id" />
-</row>
 <row name="dice_roll_id" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="dice_rolls" row="id" />
@@ -467,6 +466,14 @@
 <row name="action_event_id" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="action_events" row="id" />
+</row>
+<row name="rpg_character_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="rpg_characters" row="id" />
+</row>
+<row name="monster_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="monsters" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>

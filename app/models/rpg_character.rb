@@ -1,0 +1,2 @@
+class RpgCharacter < ApplicationRecord
+end

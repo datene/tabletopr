@@ -1,0 +1,2 @@
+class Lore < ApplicationRecord
+end

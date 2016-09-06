@@ -1,0 +1,2 @@
+class ActionEvent < ApplicationRecord
+end

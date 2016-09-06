@@ -1,0 +1,2 @@
+class SpellAttack < ApplicationRecord
+end

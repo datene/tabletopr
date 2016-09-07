@@ -20,8 +20,19 @@
 }
 
 /* Navbar logo */
-.navbar-wagon-brand img {
+.navbar-wagon-brand {
   width: 50px;
+  text-align: center;
+  color: $red;
+  transform: rotate(0deg);
+  transition: transform 200ms ease;
+  &:hover {
+    color: $red;
+    transform: rotate(15deg);
+  }
+  img {
+    width: 50px;
+  }
 }
 
 /* Navbar right section (with form, links, button) */

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+  
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :message, only: [:create]
   
   namespace :account do
     resources :games, except: [:show]

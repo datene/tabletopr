@@ -1,0 +1,60 @@
+      <% if current_user.games.include?(@game) %>
+      <div class="game-actions">
+        <%= link_to edit_account_game_path do %>
+        <i class="fa fa-edit fa-2x"></i>
+        <% end -%>
+      </div>
+      <% end -%>
+
+      <div class="game">
+        <h2>
+          <%= @game.name %>
+        </h2>
+        <p>
+          <%= @game.description %>
+        </p>
+      </div>
+
+      <div class="game-joined">
+        <% if current_user.games.include?(@game) %>
+        <p>
+          You have joined this game
+        </p>
+        <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% else %>
+        <p>
+          You have not joined this game
+        </p>
+        <%= simple_form_for [@game, @playing_session] do |f|  %>
+        <%= f.submit "Join this game", class:"btn btn-primary" %>
+        <% end -%>
+        <% end %>
+      </div>
+
+      <div class="chapters">
+        <%= link_to "all chapters", game_chapters_path(@game)  %>
+        <%= link_to "new chapter", new_game_chapter_path(@game)  %>
+        <% unless @current_chapter.nil? %>
+
+        <div class="current_chapter">
+          <h2>
+            <%= @current_chapter.title %>
+          </h2>
+          <p>
+            <%= @current_chapter.description %>
+          </p>
+          <div class="encounters">
+            <% @current_chapter.encounters.each do |encounter| %>
+            <div class="encounter">
+              <%= encounter.description %>
+            </div>
+            <div class="action-events">
+              <% encounter.action_events.each do |action_event| %>
+              <%= action_event.description %>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>

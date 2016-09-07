@@ -4,5 +4,6 @@
 //= require image-picker
 //= require imageselect
 //= require_tree .
+//= channels
 
 $(".alert" ).fadeOut(3000);

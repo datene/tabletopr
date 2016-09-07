@@ -1,0 +1,61 @@
+.message {
+  font-size: 10pt;
+  img {
+    height: 50px;
+  }
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  background: $broken-white;
+  border-top-right-radius: 2pt;
+  border-bottom-right-radius: 2pt;
+  margin: 10px auto;
+}
+
+.messages {
+  height: 70vh;
+  overflow: auto;
+  padding: 10px;
+  margin: 10px 0;
+  .self {
+    padding-left: 20px;
+    flex-direction: row-reverse;
+    p {
+      border-right: 4px dotted white;
+      width: 100%;
+      margin-right: 5px;
+      margin-top: 5px;
+      text-align: left;
+      padding: 10px;
+    }
+  }
+  .other {
+    padding-right: 20px;
+    p {
+      border-left: 4px dotted white;
+      width: 100%;
+      margin-left: 5px;
+      margin-top: 5px;
+      text-align: right;
+      padding: 10px;
+    }
+  }
+}
+
+.chat-submit {
+  form {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+}
+
+.chat-input {
+  flex: 1 0;
+  height: 36px;
+  border-radius: 2pt;
+  border: 1px solid gray;
+}

@@ -3,6 +3,8 @@ class GamesController < ApplicationController
 
   def show
     @playing_session = @game.playing_sessions.where(user: current_user).first || PlayingSession.new
+    @current_chapter = @game.chapters.last
+    @messages = @game.messages.order(created_at: :desc)
   end
 
   private

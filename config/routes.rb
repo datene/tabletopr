@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :games, only: :show do 
-    resources :playing_sessions do
+    resources :playing_sessions, only: [:create, :destroy]
       resources :rpg_characters
       resources :chapters do
         resources :encounters do
@@ -20,6 +20,5 @@ Rails.application.routes.draw do
           end
         end
       end
-    end
   end
 end

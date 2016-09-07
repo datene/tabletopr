@@ -5,7 +5,7 @@
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
-  padding: 0px 30px;
+  padding: 0px 0px 0px 30px;
   align-items: center;
   justify-content: space-between;
 }
@@ -130,13 +130,26 @@
   border-top: 1px solid #E6E6E6;
 }
 
-.nav-avatar {
-  overflow: auto;
+.account-link {
+  height: 70px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.image-link {
+  cursor: pointer;
+  width: 105px;
   position: relative;
-  height: 50px;
-  img {
-    height: 50px;
+  height: 70px;
+  .gradient {
     position: absolute;
-    left: -30%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(-90deg, rgba(1,1,1,0) 1%, rgba(255,255,255,1) 99%);
   }
 }
+

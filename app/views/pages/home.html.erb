@@ -1,2 +1,27 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<div class="games">
+  <% @games.each do |game| %>
+  <div class="game">
+    <%= link_to game_path(game) do %>
+    <h2>
+      <%= game.name %>
+    </h2>
+    <% end -%>
+    <p>
+      <%= game.description %>
+    </p>
+    <% if current_user.games.include?(game) %>
+    <p>
+      Already joined this game.
+    </p>
+    <% else %>
+    <div class="join-game">
+      <%= simple_form_for [game, @playing_session] do |f|  %>
+      <%= f.submit "Join this game", class:"btn btn-primary" %>
+      <% end -%>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

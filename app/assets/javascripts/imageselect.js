@@ -23,8 +23,12 @@ $(document).on('ready', function() {
 
   $(".player-picker").imagepicker();
 
-  $(".player_names li").each(function(index, item) {
-    $('.thumbnail').eq(index).append("<p>" + $(item).text() + "</p>");
+  $(".player_names li").each(function(index) {
+    console.log();
+    // $(item).addClass('col-xs-6 col-lg-3')
+    $('.thumbnail').eq(index).append("<p>" + $(this).text() + "</p>");
   });
+  $('ul.thumbnails').addClass('row');
+  $('.thumbnails li').addClass('col-xs-4 col-lg-2');
 
 });

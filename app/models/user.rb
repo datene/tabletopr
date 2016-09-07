@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_create :set_username
   has_many :playing_sessions
+  has_many :games, through: :playing_sessions
   has_many :rpg_characters
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

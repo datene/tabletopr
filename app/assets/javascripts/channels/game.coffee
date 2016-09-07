@@ -18,6 +18,7 @@ $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
     App.room.speak event.target.value, $('#message_user').val(), $('#message_game').val() 
     event.target.value = '' 
     event.preventDefault()
+    $('.chat-placeholder').remove()
 
 $ ->
   $.each $('.messages #message_user_id'), (message) ->

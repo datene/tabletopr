@@ -1,3 +1,38 @@
+.header {
+  background-size: cover;
+  height: 300px;
+  background-position: center;
+}
+
+.header-info {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.character {
+  margin-right: 20px;
+  text-align: center;
+  position: relative;
+  a {
+    color: #333333;
+  }
+  h3 {
+    height: 35px;
+    font-family: $header-font;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $red;
+    right: 0;
+    transform: scale(1);
+    transition: transform 200ms ease;
+    &:hover {
+      transform: scale(1.03)
+    }
+  }
+}
+
 .game-users {
   display: flex;
   justify-content: space-between;
@@ -5,20 +40,45 @@
 }
 
 .game-user {
-  width: 50px;
+  position: relative;
   height: 100px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   img {
     width: 50px;
+  }
+  p {
+    z-index: 9999;
+    font-family: $header-font;
+    background: $red;
+    padding: 3px;
+    border-radius: 2pt;
+    margin: 5px;
+    width: 50px;
+    word-wrap: break-word;
+    font-size: 11px;
+    position: absolute;
+    top: -16px;
+    text-align: center;
+    right: 10px;
   }
 }
 
 .game {
   position: relative;
+  width: 300px;
+  flex: 1 0;
+  h2 {
+    font-family: $header-font;
+  }
+}
+
+.chat-fixed {
+  position: fixed;
+  top: 100px;
+  background: white;
+  padding: 10px;
+  border-top-left-radius: 2pt;
+  border-bottom-left-radius: 2pt;
+  box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(1,1,1,0.2);
 }
 
 .game-actions {
@@ -31,5 +91,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 180px;
+  width: 250px;
+}
+
+.shape-right {
+  height: 30px;
+  background: #a1312e;
+  position: absolute;
+  width: 75%;
+  transform: rotate(-24deg);
+  bottom: -14px;
+  z-index: -1;
+  right: 2px;
+}
+
+.shape-left {
+  height: 30px;
+  background: #c24c49;
+  position: absolute;
+  width: 75%;
+  transform: rotate(24deg);
+  bottom: -14px;
+  z-index: -1;
+  left: 2px;
+}
+
+.chapters {
+  margin: 80px 0px;
+}
+
+.accordion-content {
+  margin-top: 80px;
 }

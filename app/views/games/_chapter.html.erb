@@ -1,0 +1,25 @@
+ <div class="chapters">
+      <% unless @current_chapter.nil? %>
+
+      <div class="current_chapter">
+        <h2>
+          <%= @current_chapter.title %>
+        </h2>
+        <p>
+          <%= @current_chapter.description %>
+        </p>
+        <div class="encounters">
+          <% @current_chapter.encounters.each do |encounter| %>
+          <div class="encounter">
+            <%= encounter.description %>
+          </div>
+          <div class="action-events">
+            <% encounter.action_events.each do |action_event| %>
+            <%= action_event.description %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>

@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
+  
   has_many :chapters
   has_many :messages
   has_many :playing_sessions

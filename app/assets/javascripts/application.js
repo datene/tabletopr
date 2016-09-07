@@ -5,5 +5,6 @@
 //= require imageselect
 //= require_tree .
 //= channels
+//= game-show
 
 $(".alert" ).fadeOut(3000);

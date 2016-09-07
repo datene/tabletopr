@@ -1,35 +1,64 @@
-      <div class="game">
-        <h2>
-          <%= @game.name %>
-        </h2>
-        <% if current_user.games.include?(@game) %>
-        <div class="game-actions">
-          <%= link_to edit_account_game_path do %>
-          <i class="fa fa-edit"></i>
+      <div class="header-info">
+        <% if @character %>
+        
+        <div class="character">
+          <%= link_to game_rpg_character_path(@game, @character) do %>
+          <h3>
+            <%= @character.name %>
+          </h3>
+          <% end -%>
+          <div class="decoration">
+            <div class="shape-left"></div>
+            <div class="shape-right"></div>
+          </div>
+          <%= link_to game_rpg_character_path(@game, @character) do %>
+          <%= cl_image_tag(@character.picture_url,
+          width: 150, height: 150, crop: :fill, class: "avatar-xlarge") %>
           <% end -%>
         </div>
-        <% end -%>
+        <% end %>
 
-        <p>
-          <%= @game.description %>
-        </p>
-        <div class="collapse-menu-items">
-          <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
-            Users
-          </a>
-          <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseActions" aria-expanded="false" aria-controls="collapseActions">
-            Actions
-          </a>
+        <div class="game">
+          <h2>
+            <%= @game.name %>
+          </h2>
+          <p>
+            <%= @game.description %>
+          </p>
+          <div class="collapse-menu-items">
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+              Users
+            </a>
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseActions" aria-expanded="false" aria-controls="collapseActions">
+              Actions
+            </a>
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseViews" aria-expanded="false" aria-controls="collapseViews">
+              View
+            </a>
+          </div>
         </div>
-        <div class="collapse" id="collapseUsers">
+      </div>
+      <div class="accordion-content">
+        <div class="collapse" id="collapseViews">
           <div class="well">
-            <div class="game-users">
+           <%= link_to "all chapters", game_chapters_path(@game)  %>
+           <% if @character %>
+           <%= link_to "character", game_rpg_character_path(@game, @character)  %>
+           <% end %>
+         </div>
+       </div>
+       <div class="collapse" id="collapseUsers">
+        <div class="well">
+          <div class="game-users">
+            <div class="row">
               <% @game.users.each do |user| %>
-              <div class="game-user">
-                <%= image_tag user.facebook_picture_url %>
-                <p>
-                  <%= user.first_name %>
-                </p>
+              <div class="col-xs-3 col-lg-2">
+                <div class="game-user">
+                  <%= image_tag user.facebook_picture_url %>
+                  <p>
+                    <%= user.first_name %>
+                  </p>
+                </div>
               </div>
               <% end %>
             </div> 
@@ -45,7 +74,14 @@
           </p>
           <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
           <%= link_to "new chapter", new_game_chapter_path(@game), class:"btn btn-primary"  %>
-
+          <%= link_to edit_account_game_path, class: "btn btn-primary" do %>
+          <i class="fa fa-edit"></i>
+          <% end -%>
+          <% if @character.nil? %>
+          <%= link_to "Create character", new_game_rpg_character_path(@game), class: "btn btn-primary" %>
+          <% else %>
+          <%= link_to "Edit character", edit_game_rpg_character_path(@character), class: "btn btn-primary" %>
+          <% end %>
           <% else %>
           <p>
             You have not joined this game
@@ -57,31 +93,6 @@
         </div>
       </div>
     </div>
+  </div>
 
-
-    <div class="chapters">
-      <%= link_to "all chapters", game_chapters_path(@game)  %>
-      <% unless @current_chapter.nil? %>
-
-      <div class="current_chapter">
-        <h2>
-          <%= @current_chapter.title %>
-        </h2>
-        <p>
-          <%= @current_chapter.description %>
-        </p>
-        <div class="encounters">
-          <% @current_chapter.encounters.each do |encounter| %>
-          <div class="encounter">
-            <%= encounter.description %>
-          </div>
-          <div class="action-events">
-            <% encounter.action_events.each do |action_event| %>
-            <%= action_event.description %>
-            <% end %>
-          </div>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-    </div>
+  <%= render 'chapter' %>

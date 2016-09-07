@@ -50,7 +50,7 @@ class Account::GamesController < ApplicationController
   end
 
   def game_params
-    result = params.require(:game).permit(:name, :description)
+    result = params.require(:game).permit(:name, :description, :photo, :photo_cache)
     result[:gm_id] = params[:gm_id]
     result
   end

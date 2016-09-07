@@ -1,30 +1,47 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Tabletopr</h1>
+<p>All games:</p>
 <div class="games">
   <% @games.each do |game| %>
-  <div class="game">
-    <%= link_to game_path(game) do %>
-    <h2>
-      <%= game.name %>
-    </h2>
-    <% end -%>
-    <p>
-      <%= game.description %>
-    </p>
-    <% if user_signed_in? %>
-    
-    <% if current_user.games.include?(game) %>
-    <p>
-      Already joined this game.
-    </p>
+  <div class="game-item">
+    <% if game[:photo].nil? %>
+    <div class="game-background-item" style="background-image: linear-gradient(90deg, rgba(1, 1, 1, 0) 1%, white 99%),
+    url('<%= image_path 'background.jpg' %>')"></div>
     <% else %>
-    <div class="join-game">
-      <%= simple_form_for [game, @playing_session] do |f|  %>
-      <%= f.submit "Join this game", class:"btn btn-primary" %>
-      <% end -%>
+    <div class="game-background-item" style="background-image: linear-gradient(90deg, rgba(1, 1, 1, 0) 1%, white 99%),
+    url('<%= cl_image_path game.photo, height: 300, width: 400, crop: :fill %>')"></div>
+    <% end %>
+    <div class="game-item-wrapper">
+      <div class="game-item-content">
+        <%= link_to game_path(game) do %>
+        <h2>
+          <%= game.name %>
+        </h2>
+        <% end -%>
+        <p>
+          <%= game.description %>
+        </p>
+      </div>
+      <div class="game-item-actions">
+        <% if user_signed_in? %>
+
+        <% if current_user.games.include?(game) %>
+        <%= link_to game_path(game), class: "view-game full-height" do %>
+        <i class="fa fa-eye fa-2x"></i>
+        <% end -%>
+        <% else %>
+        <%= link_to game_path(game), class: "view-game half-height" do %>
+        <i class="fa fa-eye fa-2x"></i>
+        <% end -%>
+        <div class="join-game">
+          <%= simple_form_for [game, @playing_session] do |f|  %>
+          <%= f.submit "join", id: "join-game-submit" %>
+          <i class="fa fa-plus fa-2x"></i>
+          <% end -%>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
     </div>
-    <% end %>
-    <% end %>
   </div>
   <% end %>
 </div>

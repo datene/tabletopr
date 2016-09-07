@@ -1,0 +1,5 @@
+<div class="character-detail">
+  <%= @character.name %>
+  <%= cl_image_tag(@character.picture_url,
+      width: 150, height: 150, crop: :fill) %>
+</div>

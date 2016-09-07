@@ -1,0 +1,17 @@
+<%= simple_form_for [@game, @rpg_character] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :race %>
+  <%= f.input :gender %>
+  <%= f.input :background %>
+  <%= f.input :hitpoints %>
+  <%= f.input :speed %>
+  <%= f.input :moral_alignment %>
+  <%= f.input :class_style %>
+  <%= f.input :level %>
+  <%= f.input :armor_class %>
+  <%= f.input :initiative_modifier %>
+  <%= f.input :experience_points %>
+  <%= f.input :picture %>
+  <%= f.input :picture_cache, as: :hidden %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end -%>

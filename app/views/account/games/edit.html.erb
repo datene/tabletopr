@@ -24,6 +24,8 @@
   <%= simple_form_for @game, url: account_game_path, method: :put do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
   <h3>
     Select a GM
   </h3>

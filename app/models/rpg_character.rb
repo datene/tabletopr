@@ -1,4 +1,5 @@
 class RpgCharacter < ApplicationRecord
+  mount_uploader :picture, PictureUploader
   has_many :abilities
   has_many :actions
   has_many :equipments

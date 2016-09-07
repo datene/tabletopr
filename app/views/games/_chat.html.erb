@@ -1,5 +1,10 @@
 <div class="chat">
   <div class="messages" id="messages">
+  <% if @messages == [] %>
+    <p class="chat-placeholder">
+      No messages yet
+    </p>
+  <% end %>
     <%= render @messages %>
   </div>
   <div class="chat-submit">

@@ -1,4 +1,7 @@
 <div class="chat">
+  <div class="messages" id="messages">
+    <%= render @messages %>
+  </div>
   <div class="chat-submit">
     <form> 
       <input type="text" class="chat-input" data-behavior="room_speaker"> 
@@ -6,8 +9,5 @@
       <input type="hidden" value="<%= @game.id %>" id="message_game" data-behavior="room_speaker">
       <input type="submit" class="btn btn-primary">
     </form>
-  </div>
-  <div class="messages" id="messages">
-    <%= render @messages %>
   </div>
 </div>

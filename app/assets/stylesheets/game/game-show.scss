@@ -1,0 +1,35 @@
+.game-users {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-user {
+  width: 50px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  img {
+    width: 50px;
+  }
+}
+
+.game {
+  position: relative;
+}
+
+.game-actions {
+  position: absolute;
+  top: 0;
+  left: -30px;
+}
+
+.collapse-menu-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+}

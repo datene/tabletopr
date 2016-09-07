@@ -1,60 +1,87 @@
-      <% if current_user.games.include?(@game) %>
-      <div class="game-actions">
-        <%= link_to edit_account_game_path do %>
-        <i class="fa fa-edit fa-2x"></i>
-        <% end -%>
-      </div>
-      <% end -%>
-
       <div class="game">
         <h2>
           <%= @game.name %>
         </h2>
+        <% if current_user.games.include?(@game) %>
+        <div class="game-actions">
+          <%= link_to edit_account_game_path do %>
+          <i class="fa fa-edit"></i>
+          <% end -%>
+        </div>
+        <% end -%>
+
         <p>
           <%= @game.description %>
         </p>
-      </div>
-
-      <div class="game-joined">
-        <% if current_user.games.include?(@game) %>
-        <p>
-          You have joined this game
-        </p>
-        <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% else %>
-        <p>
-          You have not joined this game
-        </p>
-        <%= simple_form_for [@game, @playing_session] do |f|  %>
-        <%= f.submit "Join this game", class:"btn btn-primary" %>
-        <% end -%>
-        <% end %>
-      </div>
-
-      <div class="chapters">
-        <%= link_to "all chapters", game_chapters_path(@game)  %>
-        <%= link_to "new chapter", new_game_chapter_path(@game)  %>
-        <% unless @current_chapter.nil? %>
-
-        <div class="current_chapter">
-          <h2>
-            <%= @current_chapter.title %>
-          </h2>
-          <p>
-            <%= @current_chapter.description %>
-          </p>
-          <div class="encounters">
-            <% @current_chapter.encounters.each do |encounter| %>
-            <div class="encounter">
-              <%= encounter.description %>
-            </div>
-            <div class="action-events">
-              <% encounter.action_events.each do |action_event| %>
-              <%= action_event.description %>
+        <div class="collapse-menu-items">
+          <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+            Users
+          </a>
+          <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseActions" aria-expanded="false" aria-controls="collapseActions">
+            Actions
+          </a>
+        </div>
+        <div class="collapse" id="collapseUsers">
+          <div class="well">
+            <div class="game-users">
+              <% @game.users.each do |user| %>
+              <div class="game-user">
+                <%= image_tag user.facebook_picture_url %>
+                <p>
+                  <%= user.first_name %>
+                </p>
+              </div>
               <% end %>
-            </div>
-            <% end %>
+            </div> 
           </div>
         </div>
-        <% end %>
       </div>
+      <div class="collapse" id="collapseActions">
+        <div class="well">
+         <div class="game-joined">
+          <% if current_user.games.include?(@game) %>
+          <p>
+            You have joined this game
+          </p>
+          <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
+          <%= link_to "new chapter", new_game_chapter_path(@game), class:"btn btn-primary"  %>
+
+          <% else %>
+          <p>
+            You have not joined this game
+          </p>
+          <%= simple_form_for [@game, @playing_session] do |f|  %>
+          <%= f.submit "Join this game", class:"btn btn-primary" %>
+          <% end -%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="chapters">
+      <%= link_to "all chapters", game_chapters_path(@game)  %>
+      <% unless @current_chapter.nil? %>
+
+      <div class="current_chapter">
+        <h2>
+          <%= @current_chapter.title %>
+        </h2>
+        <p>
+          <%= @current_chapter.description %>
+        </p>
+        <div class="encounters">
+          <% @current_chapter.encounters.each do |encounter| %>
+          <div class="encounter">
+            <%= encounter.description %>
+          </div>
+          <div class="action-events">
+            <% encounter.action_events.each do |action_event| %>
+            <%= action_event.description %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>

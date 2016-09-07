@@ -11,6 +11,8 @@
     <p>
       <%= game.description %>
     </p>
+    <% if user_signed_in? %>
+    
     <% if current_user.games.include?(game) %>
     <p>
       Already joined this game.
@@ -21,6 +23,7 @@
       <%= f.submit "Join this game", class:"btn btn-primary" %>
       <% end -%>
     </div>
+    <% end %>
     <% end %>
   </div>
   <% end %>

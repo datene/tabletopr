@@ -1,5 +1,6 @@
 class RpgCharactersController < ApplicationController
   before_action :set_game
+  before_action :set_character, only: [:edit, :update]
   def show
     @character = RpgCharacter.find(params[:id])
   end
@@ -25,10 +26,16 @@ class RpgCharactersController < ApplicationController
   end
 
   def edit
-    @rpg_character = RpgCharacter.find(params[:id])
   end
 
   def update
+    if @rpg_character.update(rpg_character_params)
+      redirect_to game_rpg_character_path(@game, rpg_character)
+      flash[:notice] = "Character succesfully updated"
+    else
+      render 'edit'
+      flash[:notice] = "Character update unsuccesful"
+    end
   end
 
   def destroy
@@ -38,6 +45,10 @@ class RpgCharactersController < ApplicationController
 
   def set_game
     @game = Game.find(params[:game_id])
+  end
+
+  def set_character
+    @rpg_character = RpgCharacter.find(params[:id])
   end
 
   def rpg_character_params

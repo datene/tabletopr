@@ -30,7 +30,7 @@ class RpgCharactersController < ApplicationController
 
   def update
     if @rpg_character.update(rpg_character_params)
-      redirect_to game_rpg_character_path(@game, rpg_character)
+      redirect_to game_rpg_character_path(@game, @rpg_character)
       flash[:notice] = "Character succesfully updated"
     else
       render 'edit'

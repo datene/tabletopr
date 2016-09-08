@@ -35,7 +35,11 @@ $green: #32B796;
 $gray: #000000;
 $broken-white: #fafafa;
 $light-gray: #dddddd;
+$background-gray: #f3f3f3;
 
 body {
   min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

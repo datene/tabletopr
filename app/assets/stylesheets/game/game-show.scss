@@ -1,7 +1,23 @@
+#toggle-chat {
+  width: 50px;
+  height: 50px;
+  background: $red;
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+}
+
 .header {
   background-size: cover;
   height: 300px;
   background-position: center;
+  box-shadow: inset 0px -1px 5px rgba(1, 1, 1, 0.4);
 }
 
 .header-info {
@@ -10,8 +26,62 @@
   justify-content: space-between;
 }
 
+.game-description {
+  width: 250px;
+}
+
+@media (min-width: 800px) and (max-width: 1400px) {
+  .chat {
+    display: block !important;
+  }
+  .game {
+    h2 {
+      text-align: left;
+    }
+  }
+  .character {
+    margin-right: 20px;
+  }
+  #toggle-chat {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  #toggle-chat {
+    display: flex;
+  }
+  .game {
+    h2 {
+      text-align: center;
+    }
+  }
+  .character {
+    margin: 20px auto;
+  }
+  .collapse-menu-items {
+    margin: 0 auto;
+  }
+  .game-description {
+    margin: 15px auto;
+  }
+  .chat {
+    margin: 0 10px;
+    display: none;
+    position: fixed;
+    top: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(1,1,1,0.2);
+  }
+}
+
+
 .character {
-  margin-right: 20px;
+  height: 150px;
+  width: 150px;
+  
   text-align: center;
   position: relative;
   a {
@@ -63,6 +133,7 @@
 }
 
 .game {
+  margin: 0 auto;
   position: relative;
   width: 300px;
   flex: 1 0;

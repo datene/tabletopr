@@ -1,5 +1,9 @@
-<h1>Tabletopr</h1>
-<p>All games:</p>
+<div class="home-header">
+  <h1>Tabletopr</h1>
+  <div class="home-tab">
+    <h2>All games:</h2>
+  </div>
+</div>
 <div class="games">
   <% @games.each do |game| %>
   <div class="game-item">
@@ -8,7 +12,7 @@
     url('<%= image_path 'background.jpg' %>')"></div>
     <% else %>
     <div class="game-background-item" style="background-image: linear-gradient(90deg, rgba(1, 1, 1, 0) 1%, white 99%),
-    url('<%= cl_image_path game.photo, height: 300, width: 400, crop: :fill %>')"></div>
+    url('<%= cl_image_path game.photo %>')"></div>
     <% end %>
     <div class="game-item-wrapper">
       <div class="game-item-content">

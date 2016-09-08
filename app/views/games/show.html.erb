@@ -1,19 +1,22 @@
 <% if @game[:photo].nil? %>
 <div class="header" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= image_path 'background.jpg' %>')"></div>
+url('<%= image_path 'background.jpg' %>')"></div>
 <% else %>
 <div class="header" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path @game.photo, height: 300, width: 400, crop: :fill %>')"></div>
+url('<%= cl_image_path @game.photo %>')"></div>
 <% end %>
 <div class="hidden" id="current_user_id"><%= current_user.id %></div>
 <div class="container">
   <div class="row">
 
-  <div class="col-xs-12 col-lg-8">
-  <%= render 'game' %>
+    <div class="col-xs-12 col-lg-8">
+      <%= render 'game' %>
     </div>
     <div class="col-xs-12 col-lg-4">
       <%= render 'chat' %>
     </div>
   </div>
 </div>
+<%= link_to "#", id:"toggle-chat" do %>
+<i class="fa fa-comment-o"></i>
+<% end -%>

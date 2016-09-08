@@ -47,7 +47,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to "#" do %>
+          <%= link_to root_path do %>
           <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
           <% end %>
         </li>
@@ -69,5 +69,27 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li>
+          <%= link_to "#" do %>
+          <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+          <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 

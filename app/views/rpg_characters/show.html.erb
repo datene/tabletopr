@@ -1,5 +1,9 @@
 <div class="character-detail">
   <%= @character.name %>
+  <% if @character.picture_url %>
   <%= cl_image_tag(@character.picture_url,
-      width: 150, height: 150, crop: :fill) %>
+  width: 150, height: 150, crop: :fill, class: "avatar-xlarge") %>
+  <% else %>
+  <%= image_tag 'character_placeholder.jpg', class: "avatar-xlarge" %>
+  <% end %>
 </div>

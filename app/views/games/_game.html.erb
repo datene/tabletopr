@@ -1,6 +1,9 @@
-      <div class="header-info">
-        <% if @character %>
-        
+<div class="container">
+  <div class="header-info">
+    <div class="row">
+      <% if @character %>
+      <div class="col-xs-12 col-lg-6">
+
         <div class="character">
           <%= link_to game_rpg_character_path(@game, @character) do %>
           <h3>
@@ -12,17 +15,22 @@
             <div class="shape-right"></div>
           </div>
           <%= link_to game_rpg_character_path(@game, @character) do %>
+          <% if @character.picture_url %>
           <%= cl_image_tag(@character.picture_url,
           width: 150, height: 150, crop: :fill, class: "avatar-xlarge") %>
+          <% else %>
+          <%= image_tag 'character_placeholder.jpg', class: "avatar-xlarge" %>
+          <% end %>
           <% end -%>
         </div>
-        <% end %>
-
+      </div>
+      <% end %>
+      <div class="col-xs-12 col-lg-6">
         <div class="game">
           <h2>
             <%= @game.name %>
           </h2>
-          <p>
+          <p class="game-description">
             <%= @game.description %>
           </p>
           <div class="collapse-menu-items">
@@ -38,61 +46,65 @@
           </div>
         </div>
       </div>
-      <div class="accordion-content">
-        <div class="collapse" id="collapseViews">
-          <div class="well">
-           <%= link_to "all chapters", game_chapters_path(@game)  %>
-           <% if @character %>
-           <%= link_to "character", game_rpg_character_path(@game, @character)  %>
-           <% end %>
-         </div>
-       </div>
-       <div class="collapse" id="collapseUsers">
-        <div class="well">
-          <div class="game-users">
-            <div class="row">
-              <% @game.users.each do |user| %>
-              <div class="col-xs-3 col-lg-2">
-                <div class="game-user">
-                  <%= image_tag user.facebook_picture_url %>
-                  <p>
-                    <%= user.first_name %>
-                  </p>
-                </div>
-              </div>
-              <% end %>
-            </div> 
-          </div>
-        </div>
-      </div>
-      <div class="collapse" id="collapseActions">
-        <div class="well">
-         <div class="game-joined">
-          <% if current_user.games.include?(@game) %>
-          <p>
-            You have joined this game
-          </p>
-          <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
-          <%= link_to "new chapter", new_game_chapter_path(@game), class:"btn btn-primary"  %>
-          <%= link_to edit_account_game_path, class: "btn btn-primary" do %>
-          <i class="fa fa-edit"></i>
-          <% end -%>
-          <% if @character.nil? %>
-          <%= link_to "Create character", new_game_rpg_character_path(@game), class: "btn btn-primary" %>
-          <% else %>
-          <%= link_to "Edit character", edit_game_rpg_character_path(@character), class: "btn btn-primary" %>
-          <% end %>
-          <% else %>
-          <p>
-            You have not joined this game
-          </p>
-          <%= simple_form_for [@game, @playing_session] do |f|  %>
-          <%= f.submit "Join this game", class:"btn btn-primary" %>
-          <% end -%>
-          <% end %>
-        </div>
-      </div>
     </div>
   </div>
+</div>
 
-  <%= render 'chapter' %>
+<div class="accordion-content">
+  <div class="collapse" id="collapseViews">
+    <div class="well">
+     <%= link_to "all chapters", game_chapters_path(@game)  %>
+     <% if @character %>
+     <%= link_to "character", game_rpg_character_path(@game, @character)  %>
+     <% end %>
+   </div>
+ </div>
+ <div class="collapse" id="collapseUsers">
+  <div class="well">
+    <div class="game-users">
+      <div class="row">
+        <% @game.users.each do |user| %>
+        <div class="col-xs-3 col-lg-2">
+          <div class="game-user">
+            <%= image_tag user.facebook_picture_url %>
+            <p>
+              <%= user.first_name %>
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div> 
+    </div>
+  </div>
+</div>
+<div class="collapse" id="collapseActions">
+  <div class="well">
+   <div class="game-joined">
+    <% if current_user.games.include?(@game) %>
+    <p>
+      You have joined this game
+    </p>
+    <%= link_to "Leave?", game_playing_session_path(@game, @playing_session), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
+    <%= link_to "new chapter", new_game_chapter_path(@game), class:"btn btn-primary"  %>
+    <%= link_to edit_account_game_path, class: "btn btn-primary" do %>
+    <i class="fa fa-edit"></i>
+    <% end -%>
+    <% if @character.nil? %>
+    <%= link_to "Create character", new_game_rpg_character_path(@game), class: "btn btn-primary" %>
+    <% else %>
+    <%= link_to "Edit character", edit_game_rpg_character_path(@character), class: "btn btn-primary" %>
+    <% end %>
+    <% else %>
+    <p>
+      You have not joined this game
+    </p>
+    <%= simple_form_for [@game, @playing_session] do |f|  %>
+    <%= f.submit "Join this game", class:"btn btn-primary" %>
+    <% end -%>
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
+
+<%= render 'chapter' %>
